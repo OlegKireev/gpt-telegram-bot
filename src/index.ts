@@ -1,9 +1,5 @@
-const bootstrap = async () => {
-  // try {
-
-  // } catch (err) {
-
-  // }
+const bootstrap = () => {
+  console.log('working...');
 };
 
 bootstrap();
