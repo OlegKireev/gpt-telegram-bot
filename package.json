@@ -29,7 +29,8 @@
   "dependencies": {
     "chalk": "4.1.2",
     "dotenv": "^16.0.3",
-    "husky": "^8.0.3"
+    "husky": "^8.0.3",
+    "telegraf": "^4.12.2"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
