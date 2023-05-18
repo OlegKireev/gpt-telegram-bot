@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { type Context, Telegraf, session } from 'telegraf';
 import { message } from 'telegraf/filters';
 import { code } from 'telegraf/format';
@@ -22,6 +23,7 @@ const openAi = new OpenAI();
 bot.use(session());
 
 bot.on(message('voice'), async (ctx) => {
+  ctx.session ??= INITIAL_SESSION;
   try {
     await ctx.reply(code('Загрузка...'));
     const userId = String(ctx.message.from.id);
@@ -34,8 +36,20 @@ bot.on(message('voice'), async (ctx) => {
 
     const text = await openAi.transcript(mp3Path);
     await ctx.reply(code(`Твой запрос: ${text}`));
-    const answer = await openAi.chat(text);
+
+    const { messages } = ctx.session;
+    messages.push({
+      content: text,
+      role: 'user',
+    });
+
     await ctx.reply(code(`Надо подумать...`));
+    const answer = await openAi.chat(ctx.session.messages);
+
+    messages.push({
+      role: 'assistant',
+      content: answer,
+    });
     ctx.reply(answer);
   } catch (err) {
     console.error('Error while voice message', err);
@@ -43,13 +57,11 @@ bot.on(message('voice'), async (ctx) => {
 });
 
 bot.command('start', async (ctx) => {
-  // eslint-disable-next-line no-param-reassign
   ctx.session = INITIAL_SESSION;
   ctx.reply('Добро пожаловать в Chat GPT voice бот.');
 });
 
 bot.command('new', async (ctx) => {
-  // eslint-disable-next-line no-param-reassign
   ctx.session = INITIAL_SESSION;
   ctx.reply(code('Я забыл о чем мы говорили прежде'));
 });
