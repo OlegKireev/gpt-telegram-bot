@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { createWriteStream } from 'fs';
 import { resolve } from 'path';
+import axios from 'axios';
 import { createDirectoryIfNotExists } from './dir';
 
 class OggConverter {
@@ -17,7 +17,6 @@ class OggConverter {
     try {
       await createDirectoryIfNotExists('../temp');
       const oggPath = resolve(__dirname, '../temp', `${filename}.ogg`);
-      // eslint-disable-next-line no-undef
       const response = await axios.get<NodeJS.ReadableStream>(url, {
         responseType: 'stream',
       });
