@@ -1,19 +1,13 @@
 /* eslint-disable no-param-reassign */
-import { type Context, Telegraf, session } from 'telegraf';
+import { Telegraf, session } from 'telegraf';
 import { message } from 'telegraf/filters';
 import { code } from 'telegraf/format';
-import { type ChatCompletionRequestMessage } from 'openai';
 import { TELEGRAM_BOT_TOKEN } from './constants';
 import { OggConverter } from './utils/ogg';
 import { OpenAI } from './utils/open-ai';
+import { type ISession, type ISessionContext } from './definitions/telegraf';
 
-interface ISessionContext extends Context {
-  session: {
-    messages: ChatCompletionRequestMessage[];
-  };
-}
-
-const INITIAL_SESSION = {
+const INITIAL_SESSION: ISession = {
   messages: [],
 };
 
