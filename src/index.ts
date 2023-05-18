@@ -1,7 +1,6 @@
 import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
 import { code } from 'telegraf/format';
-import { type ChatCompletionRequestMessage } from 'openai';
 import { TELEGRAM_BOT_TOKEN } from './constants';
 import { OggConverter } from './utils/ogg';
 import { OpenAI } from './utils/open-ai';
@@ -11,7 +10,6 @@ const openAi = new OpenAI();
 
 const bootstrap = () => {
   bot.launch();
-  console.log('Bot started!');
 };
 
 bot.on(message('voice'), async (ctx) => {
@@ -35,7 +33,7 @@ bot.on(message('voice'), async (ctx) => {
   }
 });
 
-bot.command('start', async (ctx) => {
+bot.command('start', async () => {
   'Добро пожаловать в Chat GPT voice бот.';
 });
 bootstrap();
