@@ -258,10 +258,10 @@
     "@typescript-eslint/types" "5.59.6"
     eslint-visitor-keys "^3.3.0"
 
-"@ubic/eslint-config@5.1.0-alpha.8":
-  version "5.1.0-alpha.8"
-  resolved "https://registry.yarnpkg.com/@ubic/eslint-config/-/eslint-config-5.1.0-alpha.8.tgz#0cdac29f561fcb5edafc51ce8b3fe28cba3d59ef"
-  integrity sha512-BVPZ8zMsY+xjTw6U7nu0warFj9znWYEU0kNrJTsCqWxovudrZcC/vM8xmNuKv8shIbD2yUov0GZC0uskOmH1TA==
+"@ubic/eslint-config@5.1.0-alpha.9":
+  version "5.1.0-alpha.9"
+  resolved "https://registry.yarnpkg.com/@ubic/eslint-config/-/eslint-config-5.1.0-alpha.9.tgz#55d4e9a8ef5eec50501cf2a2bcadcacf75f2b2b2"
+  integrity sha512-bnPyDcNISr+MosgSZLnNqN4x0InYfcXPremrAW65uJT9zCCWmAAhUSRD+vRf/5jcQnN5/w16F1j2JXeJtHPDfw==
   dependencies:
     "@ubic/prettier-config" "^1.0.1"
     confusing-browser-globals "^1.0.10"
@@ -273,7 +273,6 @@
     eslint-plugin-react "^7.32.2"
     eslint-plugin-react-hooks "^4.6.0"
     eslint-plugin-vue "^6.1.2"
-    prettier "^2.8.8"
     vue-eslint-parser "^7.1.0"
 
 "@ubic/prettier-config@^1.0.1":
