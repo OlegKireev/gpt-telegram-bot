@@ -18,14 +18,8 @@ export class OpenAI {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  async chat(text: string): Promise<string> {
+  async chat(messages: ChatCompletionRequestMessage[]): Promise<string> {
     try {
-      const messages: ChatCompletionRequestMessage[] = [
-        {
-          content: text,
-          role: 'user',
-        },
-      ];
       const response = await this._api.createChatCompletion({
         model: 'gpt-3.5-turbo',
         messages,
