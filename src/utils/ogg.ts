@@ -28,7 +28,7 @@ export class OggConverter {
           .inputOptions('-t 30')
           .output(this._mp3FilePath)
           .on('end', () => {
-            deleteFile(inputPath);
+            this.deleteFile('ogg');
             res(this._mp3FilePath);
           })
           .on('error', (err) => rej(err))
@@ -53,5 +53,10 @@ export class OggConverter {
     } catch (err) {
       throw new Error(`Error while creating OGG, ${err}`);
     }
+  }
+
+  async deleteFile(file: 'ogg' | 'mp3') {
+    const filename = `_${file}FilePath` as const;
+    deleteFile(this[filename]);
   }
 }
