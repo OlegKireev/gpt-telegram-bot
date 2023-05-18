@@ -4,7 +4,7 @@ import axios from 'axios';
 import ffmpeg from 'fluent-ffmpeg';
 import installer from '@ffmpeg-installer/ffmpeg';
 import { TEMP_FILES_PATH } from '../constants';
-import { createDirectoryIfNotExists } from './dir';
+import { createDirectoryIfNotExists, deleteFile } from './dir';
 
 export class OggConverter {
   _filename: string;
@@ -21,7 +21,10 @@ export class OggConverter {
         ffmpeg(inputPath)
           .inputOptions('-t 30')
           .output(outputPath)
-          .on('end', () => res(outputPath))
+          .on('end', () => {
+            deleteFile(inputPath);
+            res(outputPath);
+          })
           .on('error', (err) => rej(err))
           .run();
       });
