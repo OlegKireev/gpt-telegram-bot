@@ -13,20 +13,20 @@ class OggConverter {
   // }
 
   // eslint-disable-next-line class-methods-use-this
-  async create(url: string, filename: string) {
+  async create(url: string, filename: string): Promise<string> {
     try {
       await createDirectoryIfNotExists('../temp');
       const oggPath = resolve(__dirname, '../temp', `${filename}.ogg`);
       const response = await axios.get<NodeJS.ReadableStream>(url, {
         responseType: 'stream',
       });
-      return new Promise((res) => {
+      return new Promise<string>((res) => {
         const stream = createWriteStream(oggPath);
         response.data.pipe(stream);
         stream.on('finish', () => res(oggPath));
       });
     } catch (err) {
-      console.error('Error while creating OGG', err);
+      throw new Error(`Error while creating OGG, ${err}`);
     }
   }
 }
