@@ -1,5 +1,6 @@
 import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
+import { code } from 'telegraf/format';
 import { TELEGRAM_BOT_TOKEN } from './constants';
 import { OggConverter } from './utils/ogg';
 import { OpenAI } from './utils/open-ai';
@@ -14,6 +15,7 @@ const bootstrap = () => {
 
 bot.on(message('voice'), async (ctx) => {
   try {
+    await ctx.reply(code('Загрузка...'));
     const userId = String(ctx.message.from.id);
     const fileId = ctx.message.voice.file_id;
     const link = (await ctx.telegram.getFileLink(fileId)).href;
@@ -23,9 +25,8 @@ bot.on(message('voice'), async (ctx) => {
     const mp3Path = await ogg.toMp3(oggPath);
 
     const text = await openAi.transcript(mp3Path);
-    const response = await openAi.chat(text);
-
-    ctx.reply(response);
+    await ctx.reply(code(`Твой запрос: ${text}`));
+    // const response = await openAi.chat(text);
   } catch (err) {
     console.error('Error while voice message', err);
   }
