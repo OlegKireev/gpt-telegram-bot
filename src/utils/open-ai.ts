@@ -1,5 +1,9 @@
 import { createReadStream } from 'fs';
-import { Configuration, OpenAIApi } from 'openai';
+import {
+  Configuration,
+  OpenAIApi,
+  type ChatCompletionRequestMessage,
+} from 'openai';
 import { isAxiosError } from 'axios';
 import { GPT_API_KEY } from '../constants';
 
@@ -15,9 +19,25 @@ export class OpenAI {
 
   // eslint-disable-next-line class-methods-use-this
   async chat(text: string): Promise<string> {
-    return new Promise((res) => {
-      res('');
-    });
+    try {
+      const messages: ChatCompletionRequestMessage[] = [
+        {
+          content: text,
+          role: 'user',
+        },
+      ];
+      const response = await this._api.createChatCompletion({
+        model: 'gpt-3.5-turbo',
+        messages,
+      });
+
+      return response.data.choices[0].message?.content || 'Я не знаю';
+    } catch (err) {
+      if (isAxiosError(err)) {
+        console.error(err.response);
+      }
+      throw new Error(`Error while chatting, ${err}`);
+    }
   }
 
   async transcript(filepath: string): Promise<string> {
