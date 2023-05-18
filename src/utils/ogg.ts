@@ -6,15 +6,17 @@ import installer from '@ffmpeg-installer/ffmpeg';
 import { TEMP_FILES_PATH } from '../constants';
 import { createDirectoryIfNotExists } from './dir';
 
-class OggConverter {
-  constructor() {
+export class OggConverter {
+  _filename: string;
+
+  constructor(filename: string) {
+    this._filename = filename;
     ffmpeg.setFfmpegPath(installer.path);
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  toMp3(inputPath: string, filename: string): Promise<string> {
+  toMp3(inputPath: string): Promise<string> {
     try {
-      const outputPath = resolve(TEMP_FILES_PATH, `${filename}.mp3`);
+      const outputPath = resolve(TEMP_FILES_PATH, `${this._filename}.mp3`);
       return new Promise<string>((res, rej) => {
         ffmpeg(inputPath)
           .inputOptions('-t 30')
@@ -28,11 +30,10 @@ class OggConverter {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  async create(url: string, filename: string): Promise<string> {
+  async create(url: string): Promise<string> {
     try {
       await createDirectoryIfNotExists('../temp');
-      const oggPath = resolve(TEMP_FILES_PATH, `${filename}.ogg`);
+      const oggPath = resolve(TEMP_FILES_PATH, `${this._filename}.ogg`);
       const response = await axios.get<NodeJS.ReadableStream>(url, {
         responseType: 'stream',
       });
@@ -46,5 +47,3 @@ class OggConverter {
     }
   }
 }
-
-export const ogg = new OggConverter();
