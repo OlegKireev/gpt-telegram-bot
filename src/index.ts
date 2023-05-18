@@ -30,6 +30,7 @@ bot.on(message('voice'), async (ctx) => {
 
     const text = await openAi.transcript(mp3Path);
     await ctx.reply(code(`Твой запрос: ${text}`));
+    await ogg.deleteFile('mp3');
 
     const { messages } = ctx.session;
     messages.push({
