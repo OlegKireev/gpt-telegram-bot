@@ -6,12 +6,13 @@
   "engines": {
     "node": ">=16",
     "yarn": ">=1 <2",
-    "npm": ">=8 <9"
+    "npm": ">=7 <9"
   },
   "scripts": {
     "build": "npx tsc",
+    "prestart": "npm run build",
     "start": "NODE_ENV=production node build/index.js",
-    "dev": "yarn build && concurrently \"npx tsc --watch\" \"cross-env NODE_ENV=development nodemon -q build/index.js\"",
+    "dev": "npm run build && concurrently \"npx tsc --watch\" \"cross-env NODE_ENV=development nodemon -q build/index.js\"",
     "lint": "eslint --ignore-path .eslintignore \"src/**/*.ts\" --fix",
     "prepare": "husky install"
   },
