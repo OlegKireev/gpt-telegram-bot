@@ -7,14 +7,11 @@ import { TEMP_FILES_PATH } from '../constants';
 import { createDirectoryIfNotExists, deleteFile } from '../utils/dir';
 
 export class OggConverter {
-  private _filename: string;
-
   private _oggFilePath: string;
 
   private _mp3FilePath: string;
 
   constructor(filename: string) {
-    this._filename = filename;
     this._oggFilePath = resolve(TEMP_FILES_PATH, `${filename}.ogg`);
     this._mp3FilePath = resolve(TEMP_FILES_PATH, `${filename}.mp3`);
     ffmpeg.setFfmpegPath(installer.path);
