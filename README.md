@@ -1,6 +1,6 @@
 # Cleaver ChatGPT Telegram bot
 
-This bot helps you to communicate with Chat GPT
+This bot helps you to communicate with Chat GPT by voice or text.
 
 ## Example
 
