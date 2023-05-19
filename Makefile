@@ -1,11 +1,12 @@
-IMAGE_NAME=olegkireev/gpt-telegram-bot
-CONTAINER_NAME=$(IMAGE_NAME)-container
+PROJECT_NAME=gpt-telegram-bot
+IMAGE_NAME=olegkireev/$(PROJECT_NAME)
+CONTAINER_NAME=$(PROJECT_NAME)-container
 
 dockerize:
 	docker build -t $(IMAGE_NAME) .
 
 start:
-	docker run --name $(CONTAINER_NAME) -p 8000:8000 $(IMAGE_NAME)
+	docker run --name $(CONTAINER_NAME) -p 8000:8000 -d $(IMAGE_NAME)
 
 stop:
 	docker stop $(CONTAINER_NAME)
