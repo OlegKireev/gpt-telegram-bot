@@ -4,7 +4,7 @@ import axios from 'axios';
 import ffmpeg from 'fluent-ffmpeg';
 import installer from '@ffmpeg-installer/ffmpeg';
 import { TEMP_FILES_PATH } from '../constants';
-import { createDirectoryIfNotExists, deleteFile } from './dir';
+import { createDirectoryIfNotExists, deleteFile } from '../utils/dir';
 
 export class OggConverter {
   private _filename: string;

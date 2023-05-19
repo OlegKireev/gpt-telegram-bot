@@ -17,7 +17,6 @@ export class OpenAI {
     this._api = new OpenAIApi(config);
   }
 
-  // eslint-disable-next-line class-methods-use-this
   async chat(messages: ChatCompletionRequestMessage[]): Promise<string> {
     try {
       const response = await this._api.createChatCompletion({
