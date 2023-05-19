@@ -12,10 +12,25 @@ You can try this bot:
 
 ## Scripts
 
-`yarn dev` - run a local development mode
-`yarn build` - build the app to the /build directory
-`yarn lint` - run eslint with --fix parameter
-`yarn start` - run production version of the app, you need run build before
+run a local development mode
+```sh
+yarn dev
+```
+
+build the app to the /build directory
+```sh
+yarn build
+```
+
+run eslint with --fix parameter
+```sh
+yarn lint
+```
+
+run production version of the app, you need run build before
+```sh
+yarn start
+```
 
 ## Technologies
 
