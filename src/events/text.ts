@@ -1,11 +1,10 @@
 import { code } from 'telegraf/format';
 import { message } from 'telegraf/filters';
-import { INITIAL_SESSION } from '../constants';
 import { bot, openAi } from '../instance';
 
 export const text = bot.on(message('text'), async (ctx) => {
   // eslint-disable-next-line no-param-reassign
-  ctx.session ??= INITIAL_SESSION;
+  ctx.session ??= { messages: [] };
   try {
     const userMessage = await ctx.message.text;
     const { messages } = ctx.session;
