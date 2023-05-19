@@ -1,11 +1,9 @@
 /* eslint-disable no-param-reassign */
-import { session } from 'telegraf';
 import { code } from 'telegraf/format';
 import { INITIAL_SESSION } from './constants';
 import { bot } from './instance';
+import './config';
 import './events/voice';
-
-bot.use(session());
 
 bot.command('start', async (ctx) => {
   ctx.session = INITIAL_SESSION;
@@ -22,6 +20,3 @@ const bootstrap = () => {
 };
 
 bootstrap();
-
-process.once('SIGINT', () => bot.stop('Node SIGINT event'));
-process.once('SIGTERM', () => bot.stop('Node SIGTERM event'));
