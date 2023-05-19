@@ -4,7 +4,7 @@ import { OggConverter } from '../classes/ogg';
 import { INITIAL_SESSION } from '../constants';
 import { bot, openAi } from '../instance';
 
-bot.on(message('voice'), async (ctx) => {
+export const voice = bot.on(message('voice'), async (ctx) => {
   // eslint-disable-next-line no-param-reassign
   ctx.session ??= INITIAL_SESSION;
   try {

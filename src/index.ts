@@ -1,7 +1,7 @@
 import { bot } from './instance';
 import './config';
 import './commands';
-import './events/voice';
+import './events';
 
 const bootstrap = () => {
   bot.launch();
