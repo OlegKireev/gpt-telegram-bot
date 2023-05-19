@@ -10,8 +10,8 @@
   },
   "scripts": {
     "build": "npx tsc",
-    "start": "node build/index.js",
-    "dev": "yarn build && concurrently \"npx tsc --watch\" \"nodemon -q build/index.js\"",
+    "start": "NODE_ENV=production node build/index.js",
+    "dev": "cross-env NODE_ENV=development yarn build && concurrently \"npx tsc --watch\" \"nodemon -q build/index.js\"",
     "lint": "eslint --ignore-path .eslintignore \"src/**/*.ts\" --fix",
     "prepare": "husky install"
   },
@@ -31,6 +31,7 @@
     "@types/fluent-ffmpeg": "^2.1.21",
     "axios": "^1.4.0",
     "chalk": "4.1.2",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "fluent-ffmpeg": "^2.1.2",
     "husky": "^8.0.3",
